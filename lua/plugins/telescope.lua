@@ -17,7 +17,6 @@ return {
         })
 
         vim.keymap.set("n", "<leader>;", telescope.find_files, {})
-        vim.keymap.set("n", "<C-p>", telescope.git_files, {})
         vim.keymap.set("n", "<leader>pws", function()
             local word = vim.fn.expand("<cword>")
             telescope.grep_string({ search = word })
