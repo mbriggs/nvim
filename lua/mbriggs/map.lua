@@ -2,84 +2,89 @@ vim.g.mapleader = " "
 local map = vim.keymap.set
 
 -- netrw
-map("n", "<leader>pv", vim.cmd.Ex)
+map("n", "<leader>x", vim.cmd.Ex, { desc = "netrw" })
+
+-- nuke buffer
+map("n", "<leader>bk", "<cmd>bd!<cr>", { desc = "nuke buffer" })
+
+-- go to alternate file
+map("n", "<leader>bb", "<C-^>", { desc = "go to alternate file" })
 
 -- make it super easy to quit
-map("n", "<leader><cr>", ":q<cr>")
+map("n", "<leader><cr>", ":q<cr>", { desc = "quit" })
 
 -- make it super easy to split
-map("n", "<leader>'", ":vsp<cr>")
-map("n", '<leader>"', ":sp<cr>")
+map("n", "<leader>'", ":vsp<cr>", { desc = "vertical split" })
+map("n", '<leader>"', ":sp<cr>", { desc = "horizontal split" })
 
 -- in visual mode, move lines around with J and K
-map("v", "K", ":m '<-2<CR>gv=gv")
-map("v", "J", ":m '>+1<CR>gv=gv")
+map("v", "K", ":m '<-2<CR>gv=gv", { desc = "move line(s) up" })
+map("v", "J", ":m '>+1<CR>gv=gv", { desc = "move line(s) down" })
 
 -- dont move the cursor when joining lines
-map("n", "J", "mzJ`z")
+map("n", "J", "mzJ`z", { desc = "join lines" })
 
 -- keep cursor in middle of screen when scrolling
-map("n", "<C-d>", "<C-d>zz")
-map("n", "<C-u>", "<C-u>zz")
+map("n", "<C-d>", "<C-d>zz", { desc = "scroll down" })
+map("n", "<C-u>", "<C-u>zz", { desc = "scroll up" })
 
 -- keep cursor in the middle of the screen when moving between search results
-map("n", "n", "nzzzv")
-map("n", "N", "Nzzzv")
+map("n", "n", "nzzzv", { desc = "next search result" })
+map("n", "N", "Nzzzv", { desc = "previous search result" })
 
--- emacs style cursor movement
-map("i", "<C-e>", "<esc>A")
-map("i", "<C-n>", "<down>")
-map("i", "<C-p>", "<up>")
-map("i", "<M-left>", "<C-left>")
-map("i", "<M-right>", "<C-right>")
-map("i", "<M-backspace>", "<C-w>")
+-- emacs style
+map("n", "<leader>.", "<C-]>", { desc = "jump to definition" })
+map("i", "<C-a>", "<Home>", { desc = "start of line" })
+map("i", "<C-e>", "<esc>A", { desc = "end of line" })
+map("i", "<C-n>", "<down>", { desc = "next line" })
+map("i", "<C-p>", "<up>", { desc = "previous line" })
+map("i", "<M-left>", "<C-left>", { desc = "previous word" })
+map("i", "<M-right>", "<C-right>", { desc = "next word" })
+map("i", "<M-backspace>", "<C-w>", { desc = "delete previous word" })
 
 -- dabbrev style completion
-map("i", "<C-j>", "<C-x><C-n>")
-map("i", "<C-k>", "<C-x><C-p>")
+map("i", "<C-j>", "<C-x><C-n>", { desc = "next completion" })
+map("i", "<C-k>", "<C-x><C-p>", { desc = "previous completion" })
 
 -- without yanking
-map("x", "<leader>p", [["_dP]])
-map({ "n", "v" }, "<leader>d", [["_d]])
+map("x", "<leader>p", [["_dP]], { desc = "paste without yanking" })
+map({ "n", "v" }, "<leader>d", [["_d]], { desc = "delete without yanking" })
 
 -- yank to system
-map({ "n", "v" }, "<leader>y", [["+y]])
-map("n", "<leader>Y", [["+Y]])
+map({ "n", "v" }, "<leader>y", [["+y]], { desc = "yank to system clipboard" })
+map("n", "<leader>Y", [["+Y]], { desc = "yank rest of line to system clipboard" })
 
--- Q is the worst possible thing
-map("n", "Q", "<nop>")
+-- Q is the worst possible thing, make it replay macro
+map("n", "Q", "@q", { desc = "replay macro" })
 
--- qf nav
-map("n", "<M-n>", "<cmd>cnext<CR>zz")
-map("n", "<M-p>", "<cmd>cprev<CR>zz")
-map("n", "<M-q>", "<cmd>cclose<CR>")
+-- qf nav, keep cursor in the middle of the screen, go off of option
+map("n", "<M-n>", "<cmd>cnext<CR>zz", { desc = "next quickfix" })
+map("n", "<M-p>", "<cmd>cprev<CR>zz", { desc = "previous quickfix" })
+map("n", "<M-q>", "<cmd>cclose<CR>", { desc = "close quickfix" })
 
 -- substitute current word
-map("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+map("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "substitute current word" })
 
 -- save and clear highlights
-map("n", "<CR>", ":nohlsearch<CR>:w<CR>")
+map("n", "<CR>", ":nohlsearch<CR>:w<CR>", { desc = "save and clear highlights" })
 
 -- H / L for start / end of line
-map("n", "<s-h>", "^")
-map("n", "<s-l>", "$")
+map("n", "<s-h>", "^", { desc = "start of line" })
+map("n", "<s-l>", "$", { desc = "end of line" })
 
 -- put current dir into command
-map("c", "%%", "<C-R>=expand('%:h').'/'<cr>")
-
--- go to previous buffer
-map("n", "-", "<c-^>")
+map("c", "%%", "<C-R>=expand('%:h').'/'<cr>", { desc = "put current dir into command" })
 
 --tmux
 map("n", "<c-w>h", function()
-	require("tmux").move_left()
-end)
+    require("tmux").move_left()
+end, { desc = "move left" })
 map("n", "<c-w>j", function()
-	require("tmux").move_bottom()
-end)
+    require("tmux").move_bottom()
+end, { desc = "move bottom" })
 map("n", "<c-w>k", function()
-	require("tmux").move_top()
-end)
+    require("tmux").move_top()
+end, { desc = "move top" })
 map("n", "<c-w>l", function()
-	require("tmux").move_right()
-end)
+    require("tmux").move_right()
+end, { desc = "move right" })

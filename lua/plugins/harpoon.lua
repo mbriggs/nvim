@@ -7,13 +7,13 @@ return {
         harpoon:setup()
         local map = vim.keymap.set
 
-        map("n", "<leader>a", function()
+        map("n", "<leader>ba", function()
             harpoon:list():add()
         end, { noremap = true, silent = true, desc = "Add to Harpoon" })
 
-        map("n", "<C-e>", function()
+        map("n", "<leader>bh", function()
             harpoon.ui:toggle_quick_menu(harpoon:list())
-        end)
+        end, { noremap = true, silent = true, desc = "Toggle Harpoon" })
 
         map("n", "<C-h>", function()
             harpoon:list():select(1)
