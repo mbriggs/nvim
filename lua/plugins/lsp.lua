@@ -2,20 +2,13 @@ return {
     {
         "ray-x/lsp_signature.nvim",
         event = "BufRead",
-        config = function()
-            require("lsp_signature").setup({
-                toggle_key = "<C-s>",
-                always_trigger = false,
-                floating_window = false,
-                hint_prefix = ":: ",
-                handler_opts = {
-                    border = "solid",
-                },
-            })
-            vim.keymap.set({ "n" }, "<C-s>", function()
-                require("lsp_signature").toggle_float_win()
-            end, { silent = true, noremap = true, desc = "toggle signature" })
-        end,
+        opt = {
+            floating_window = false,
+            hint_prefix = ":: ",
+            handler_opts = {
+                border = "solid",
+            },
+        },
     },
     {
         "neovim/nvim-lspconfig",
