@@ -4,7 +4,7 @@ return {
     cmd = "Neotree",
     dependencies = {
         "nvim-lua/plenary.nvim",
-        "nvim-tree/nvim-web-devicons",     -- not strictly required, but recommended
+        "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
         "MunifTanjim/nui.nvim",
     },
     keys = {
@@ -75,11 +75,12 @@ return {
                     end,
                     desc = "Open with System Application",
                 },
+                ["/"] = "noop", -- disable filtering
             },
         },
         default_component_configs = {
             indent = {
-                with_expanders = true,     -- if nil and file nesting is enabled, will enable expanders
+                with_expanders = true, -- if nil and file nesting is enabled, will enable expanders
                 expander_collapsed = "",
                 expander_expanded = "",
                 expander_highlight = "NeoTreeExpander",
