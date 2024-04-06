@@ -16,18 +16,21 @@ return {
             },
         })
 
-        vim.keymap.set("n", "<leader>;", telescope.find_files, {})
-        vim.keymap.set("n", "<leader>pws", function()
+        vim.keymap.set("n", "<leader>;", telescope.find_files, { desc = "Find files" })
+        vim.keymap.set("n", "<leader>ff", telescope.find_files, { desc = "Find files" })
+        vim.keymap.set("n", "<leader>fw", function()
             local word = vim.fn.expand("<cword>")
             telescope.grep_string({ search = word })
-        end)
-        vim.keymap.set("n", "<leader>pWs", function()
+        end, { desc = "Find word" })
+        vim.keymap.set("n", "<leader>fW", function()
             local word = vim.fn.expand("<cWORD>")
             telescope.grep_string({ search = word })
-        end)
-        vim.keymap.set("n", "<leader>ps", function()
+        end, { desc = "Find WORD" })
+        vim.keymap.set("n", "<leader>fg", function()
             telescope.grep_string({ search = vim.fn.input("Grep > ") })
-        end)
-        vim.keymap.set("n", "<leader>vh", telescope.help_tags, {})
+        end, { desc = "Grep" })
+        vim.keymap.set("n", "<leader>fh", telescope.help_tags, { desc = "Find help tag" })
+
+        vim.keymap.set("n", "<leader>=", telescope.lsp_document_symbols, { desc = "Document symbols" })
     end,
 }

@@ -9,7 +9,8 @@ return {
 
         map("n", "<leader>a", function()
             harpoon:list():add()
-        end)
+        end, { noremap = true, silent = true, desc = "Add to Harpoon" })
+
         map("n", "<C-e>", function()
             harpoon.ui:toggle_quick_menu(harpoon:list())
         end)
@@ -25,14 +26,6 @@ return {
         end)
         map("n", "<C-l>", function()
             harpoon:list():select(4)
-        end)
-
-        -- Toggle previous & next buffers stored within Harpoon list
-        map("n", "<C-S-P>", function()
-            harpoon:list():prev()
-        end)
-        map("n", "<C-S-N>", function()
-            harpoon:list():next()
         end)
     end,
 }

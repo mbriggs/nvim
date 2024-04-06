@@ -1,3 +1,4 @@
+local map = require("map")
 return {
     "neovim/nvim-lspconfig",
     dependencies = {
@@ -11,7 +12,7 @@ return {
         "L3MON4D3/LuaSnip",
         "saadparwaiz1/cmp_luasnip",
         "j-hui/fidget.nvim",
-        "folke/neodev.nvim" -- configure lua LSP for neovim
+        "folke/neodev.nvim", -- configure lua LSP for neovim
     },
 
     config = function()
@@ -98,16 +99,20 @@ return {
                 -- Buffer local mappings.
                 -- See `:help vim.lsp.*` for documentation on any of the below functions
                 local opts = { buffer = ev.buf }
-                vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-                vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+                local desc = map.desc(opts)
+
+                vim.keymap.set("n", "gD", vim.lsp.buf.type_definition, desc("Go to type definition"))
+                vim.keymap.set("n", "gd", vim.lsp.buf.definition, desc("Go to definition"))
+
                 vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-                vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
-                vim.keymap.set({ "n", "i" }, "<C-s>", vim.lsp.buf.signature_help, opts)
-                vim.keymap.set("n", "<leader>D", vim.lsp.buf.type_definition, opts)
-                vim.keymap.set("n", "<leader>vr", vim.lsp.buf.rename, opts)
-                vim.keymap.set({ "n", "v" }, "<leader>va", vim.lsp.buf.code_action, opts)
-                vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
-                vim.keymap.set("n", "<leader>f", function()
+
+                vim.keymap.set("n", "<leader>cD", vim.lsp.buf.type_definition, desc("Go to type definition"))
+                vim.keymap.set("n", "<leader>cd", vim.lsp.buf.definition, desc("Go to definition"))
+                vim.keymap.set("n", "<leader>ci", vim.lsp.buf.implementation, desc("Go to implementation"))
+                vim.keymap.set("n", "<leader>cn", vim.lsp.buf.rename, desc("Rename symbol"))
+                vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, desc("Code action"))
+                vim.keymap.set("n", "<leader>cr", vim.lsp.buf.references, desc("Go to references"))
+                vim.keymap.set("n", "<leader>cm", function()
                     vim.lsp.buf.format({ async = true })
                 end, opts)
             end,
