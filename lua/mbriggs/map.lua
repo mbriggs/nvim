@@ -26,6 +26,18 @@ map("n", "<C-u>", "<C-u>zz")
 map("n", "n", "nzzzv")
 map("n", "N", "Nzzzv")
 
+-- emacs style cursor movement
+map("i", "<C-e>", "<esc>A")
+map("i", "<C-n>", "<down>")
+map("i", "<C-p>", "<up>")
+map("i", "<M-left>", "<C-left>")
+map("i", "<M-right>", "<C-right>")
+map("i", "<M-backspace>", "<C-w>")
+
+-- dabbrev style completion
+map("i", "<C-j>", "<C-x><C-n>")
+map("i", "<C-k>", "<C-x><C-p>")
+
 -- without yanking
 map("x", "<leader>p", [["_dP]])
 map({ "n", "v" }, "<leader>d", [["_d]])
@@ -38,10 +50,9 @@ map("n", "<leader>Y", [["+Y]])
 map("n", "Q", "<nop>")
 
 -- qf nav
-map("n", "<C-k>", "<cmd>cnext<CR>zz")
-map("n", "<C-j>", "<cmd>cprev<CR>zz")
-map("n", "<leader>k", "<cmd>lnext<CR>zz")
-map("n", "<leader>j", "<cmd>lprev<CR>zz")
+map("n", "<M-n>", "<cmd>cnext<CR>zz")
+map("n", "<M-p>", "<cmd>cprev<CR>zz")
+map("n", "<M-q>", "<cmd>cclose<CR>")
 
 -- substitute current word
 map("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
@@ -61,14 +72,14 @@ map("n", "-", "<c-^>")
 
 --tmux
 map("n", "<c-w>h", function()
-    require("tmux").move_left()
+	require("tmux").move_left()
 end)
 map("n", "<c-w>j", function()
-    require("tmux").move_bottom()
+	require("tmux").move_bottom()
 end)
 map("n", "<c-w>k", function()
-    require("tmux").move_top()
+	require("tmux").move_top()
 end)
 map("n", "<c-w>l", function()
-    require("tmux").move_right()
+	require("tmux").move_right()
 end)
