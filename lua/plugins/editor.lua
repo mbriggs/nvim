@@ -1,9 +1,5 @@
 return {
     {
-        'jinh0/eyeliner.nvim',
-        event = "VeryLazy"
-    },
-    {
         "nvim-neo-tree/neo-tree.nvim",
         branch = "v3.x",
         cmd = "Neotree",
