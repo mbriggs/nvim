@@ -10,6 +10,9 @@ map("n", "<leader>bk", "<cmd>bd!<cr>", { desc = "nuke buffer" })
 -- go to alternate file
 map("n", "<leader>bb", "<C-^>", { desc = "go to alternate file" })
 
+-- make file executable
+map("n", "<leader>bx", "<cmd>!chmod +x %<CR>", { silent = true, desc = "make file executable" })
+
 -- make it super easy to quit
 map("n", "<leader><cr>", ":q<cr>", { desc = "quit" })
 
@@ -18,8 +21,8 @@ map("n", "<leader>'", ":vsp<cr>", { desc = "vertical split" })
 map("n", '<leader>"', ":sp<cr>", { desc = "horizontal split" })
 
 -- in visual mode, move lines around with J and K
-map("v", "K", ":m '<-2<CR>gv=gv", { desc = "move line(s) up" })
 map("v", "J", ":m '>+1<CR>gv=gv", { desc = "move line(s) down" })
+map("v", "K", ":m '<-2<CR>gv=gv", { desc = "move line(s) up" })
 
 -- dont move the cursor when joining lines
 map("n", "J", "mzJ`z", { desc = "join lines" })
@@ -54,8 +57,11 @@ map({ "n", "v" }, "<leader>d", [["_d]], { desc = "delete without yanking" })
 map({ "n", "v" }, "<leader>y", [["+y]], { desc = "yank to system clipboard" })
 map("n", "<leader>Y", [["+Y]], { desc = "yank rest of line to system clipboard" })
 
--- Q is the worst possible thing, make it replay macro
+-- replay macro
 map("n", "Q", "@q", { desc = "replay macro" })
+
+-- get rid of the worst possible thing in vim
+map("n", "q:", "<nop>", { desc = "get rid of command history" })
 
 -- qf nav, keep cursor in the middle of the screen, go off of option
 map("n", "<M-n>", "<cmd>cnext<CR>zz", { desc = "next quickfix" })
