@@ -16,6 +16,24 @@ vim.api.nvim_create_autocmd("BufRead", {
     command = "nmap <buffer> q :q<CR>",
 })
 
+-- q quits
+
+local quit_types = {
+    help = true,
+    qf = true,
+    fugitive = true,
+}
+vim.api.nvim_create_autocmd("FileType", {
+    desc = "q quits",
+    group = "userft",
+    callback = function(opts)
+        local ft = vim.bo[opts.buf].filetype
+        if quit_types[ft] then
+            vim.keymap.set("n", "q", ":q<cr>", { buffer = true, noremap = true, silent = true })
+        end
+    end,
+})
+
 -- gohtml is html
 vim.api.nvim_create_autocmd("BufRead", {
     desc = "set gohtml to html",
