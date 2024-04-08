@@ -8,28 +8,17 @@ vim.api.nvim_create_autocmd("BufRead", {
     command = "set ft=clojure",
 })
 
--- q quits ft=help
-vim.api.nvim_create_autocmd("BufRead", {
-    desc = "set help to help",
-    group = "userft",
-    pattern = "help",
-    command = "nmap <buffer> q :q<CR>",
-})
 
--- q quits
+-- actual ft maps
 
-local quit_types = {
-    help = true,
-    qf = true,
-    fugitive = true,
-}
 vim.api.nvim_create_autocmd("FileType", {
-    desc = "q quits",
+    desc = "cr git commits",
     group = "userft",
     callback = function(opts)
         local ft = vim.bo[opts.buf].filetype
-        if quit_types[ft] then
-            vim.keymap.set("n", "q", ":q<cr>", { buffer = true, noremap = true, silent = true })
+
+        if ft == "gitcommit" then
+            vim.keymap.set("n", "<cr>", ":wq<cr>", { buffer = true, noremap = true, silent = true })
         end
     end,
 })
