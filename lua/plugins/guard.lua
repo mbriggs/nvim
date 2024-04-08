@@ -11,7 +11,9 @@ return {
 
         ft("typescript,javascript,typescriptreact"):fmt("prettier")
 
-        ft("go"):fmt("gofmt")
+        ft("go"):fmt({ cmd = "goimports", stdin = true })
+
+        ft("sh"):fmt("shfmt")
 
         require("guard").setup({
             fmt_on_save = true,
