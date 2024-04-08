@@ -11,7 +11,6 @@ vim.opt.smartindent = true
 vim.opt.wrap = true
 
 vim.opt.number = true -- show line numbers
-vim.opt.relativenumber = true -- show relative line numbers
 
 -- make extra files less irritating
 vim.opt.swapfile = false
