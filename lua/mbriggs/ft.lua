@@ -44,7 +44,18 @@ vim.api.nvim_create_autocmd("BufRead", {
     desc = "golang formatting",
     group = "userft",
     pattern = "*.go",
-    command = "setlocal noet ts=4 sw=4 sts=4",
+    callback = function()
+        vim.opt_local.expandtab = false -- noet: Don't expand tabs to spaces
+        vim.opt_local.tabstop = 4       -- ts=4: Number of spaces that a <Tab> in the file counts for
+        vim.opt_local.shiftwidth = 4    -- sw=4: Size of an indent
+        vim.opt_local.softtabstop = 4   -- sts=4: Number of spaces that a Tab counts for while performing editing operations
+
+        vim.keymap.set("n", "<leader>td", [[<cmd>lua require('dap-go').debug_test()<CR>]],
+            { buffer = true, noremap = true, silent = true, desc = "Debug Nearest (go)" })
+
+        vim.keymap.set("n", "<leader>tD", [[<cmd>lua require('dap-go').debug_last_test()<CR>]],
+            { buffer = true, noremap = true, silent = true, desc = "Debug Last (go)" })
+    end
 })
 
 vim.api.nvim_create_autocmd("BufRead", {

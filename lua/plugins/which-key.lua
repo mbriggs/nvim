@@ -17,7 +17,9 @@ return {
             ["<leader>"] = {
                 b = { name = "+buffer" },
                 p = { name = "+project" },
+                d = { name = "+debug" },
                 c = { name = "+code" },
+                t = { name = "+test" },
                 f = { name = "+find" },
                 g = { name = "+git" },
             },

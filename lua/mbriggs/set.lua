@@ -21,9 +21,11 @@ vim.opt.undofile = true
 -- more gui colors
 vim.opt.termguicolors = true
 
-vim.opt.scrolloff = 8 -- lines to keep above / below the cursor
-vim.opt.signcolumn = "yes" -- show signs
+vim.opt.scrolloff = 8         -- lines to keep above / below the cursor
+vim.opt.signcolumn = "yes"    -- show signs
 
 vim.opt.isfname:append("@-@") -- allow @ in file names
 
-vim.opt.updatetime = 50 -- speed up ui
+vim.opt.updatetime = 50       -- speed up ui
+
+vim.o.grepprg = "rg --vimgrep --no-heading --smart-case"
