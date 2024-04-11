@@ -67,5 +67,6 @@ return {
         { "<leader>tf",  [[<cmd>lua require("neotest").run.run(vim.fn.expand("%"))<cr>]],                                       desc = "Run current file" },
         { "<leader>td",  [[<cmd>lua require("neotest").run.run({strategy = "dap"})<cr>]],                                       desc = "Debug test at point" },
         { "<leader>tk",  [[<cmd>lua require("neotest").run.stop()<cr>]],                                                        desc = "Kill test at point" },
+        { "<leader>ts",  [[<cmd>lua require("neotest").summary.toggle()<cr>]],                                                  desc = "Toggle Summary" },
     }
 }
