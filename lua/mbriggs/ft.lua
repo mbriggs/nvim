@@ -50,11 +50,11 @@ vim.api.nvim_create_autocmd("BufRead", {
         vim.opt_local.shiftwidth = 4    -- sw=4: Size of an indent
         vim.opt_local.softtabstop = 4   -- sts=4: Number of spaces that a Tab counts for while performing editing operations
 
-        vim.keymap.set("n", "<leader>td", [[<cmd>lua require('dap-go').debug_test()<CR>]],
-            { buffer = true, noremap = true, silent = true, desc = "Debug Nearest (go)" })
-
-        vim.keymap.set("n", "<leader>tD", [[<cmd>lua require('dap-go').debug_last_test()<CR>]],
-            { buffer = true, noremap = true, silent = true, desc = "Debug Last (go)" })
+        -- vim.keymap.set("n", "<leader>td", [[<cmd>lua require('dap-go').debug_test()<CR>]],
+        --     { buffer = true, noremap = true, silent = true, desc = "Debug Nearest (go)" })
+        --
+        -- vim.keymap.set("n", "<leader>tD", [[<cmd>lua require('dap-go').debug_last_test()<CR>]],
+        --     { buffer = true, noremap = true, silent = true, desc = "Debug Last (go)" })
     end
 })
 
