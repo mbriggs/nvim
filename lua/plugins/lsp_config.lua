@@ -25,6 +25,8 @@ return {
             cmp_lsp.default_capabilities()
         )
 
+        vim.filetype.add({ extension = { templ = "templ" } })
+
         require("fidget").setup({})
         require("mason").setup()
         require("mason-lspconfig").setup({
@@ -34,6 +36,10 @@ return {
                 "tsserver",
                 "gopls",
                 "golangci_lint_ls",
+                "templ",
+                "html",
+                "htmx",
+                "tailwindcss"
             },
             handlers = {
                 function(server_name) -- default handler (optional)
@@ -55,6 +61,33 @@ return {
                         },
                     })
                 end,
+
+                -- required for templ
+                ["html"] = function()
+                    local lspconfig = require("lspconfig")
+                    lspconfig.html.setup({
+                        capabilities = capabilities,
+                        filetypes = { "html", "templ" },
+                    })
+                end,
+
+                ["htmx"] = function()
+                    local lspconfig = require("lspconfig")
+                    lspconfig.html.setup({
+                        capabilities = capabilities,
+                        filetypes = { "html", "templ" },
+                    })
+                end,
+
+                ["tailwindcss"] = function()
+                    local lspconfig = require("lspconfig")
+                    lspconfig.html.setup({
+                        capabilities = capabilities,
+                        filetypes = { "templ", "astro", "javascript", "typescript", "react" },
+                        init_options = { userLanguages = { templ = "html" } },
+                    })
+                end,
+                -- end templ
             },
         })
 

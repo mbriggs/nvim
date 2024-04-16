@@ -15,6 +15,7 @@ return {
                     "markdown_inline",
                     "c",
                     "lua",
+                    "templ",
                     "rust",
                     "jsdoc",
                     "bash",

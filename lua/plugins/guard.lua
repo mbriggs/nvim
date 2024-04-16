@@ -15,6 +15,8 @@ return {
 
         ft("sh"):fmt("shfmt")
 
+        ft("templ"):fmt({ cmd = "templ", args = { "fmt" }, stdin = true })
+
         require("guard").setup({
             fmt_on_save = true,
             lsp_as_default_formatter = true,
