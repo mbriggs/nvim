@@ -1,7 +1,10 @@
 return {
     "nvim-telescope/telescope.nvim",
     branch = "0.1.x",
-    dependencies = { "nvim-lua/plenary.nvim" },
+    dependencies = {
+        "nvim-lua/plenary.nvim",
+        "natecraddock/telescope-zf-native.nvim"
+    },
     config = function()
         local telescope = require("telescope.builtin")
         local actions = require("telescope.actions")
@@ -14,7 +17,24 @@ return {
                     },
                 },
             },
+            extensions = {
+                ["zf-native"] = {
+                    file = {
+                        enable = true,
+                        highlight_results = true,
+                        match_filename = true,
+                    },
+
+                    generic = {
+                        enable = true,
+                        highlight_results = true,
+                        match_filename = false,
+                    },
+                }
+            },
         })
+
+        require("telescope").load_extension("zf-native")
 
         vim.keymap.set("n", "<leader>;", telescope.find_files, { desc = "Find files" })
         vim.keymap.set("n", "<leader>ff", telescope.find_files, { desc = "Find files" })
