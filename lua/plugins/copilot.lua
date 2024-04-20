@@ -11,7 +11,7 @@ return {
         config = function()
             require("copilot").setup({
                 suggestion = {
-                    auto_trigger = false,
+                    auto_trigger = true,
                 },
                 file_types = {
                     ["*"] = true,
