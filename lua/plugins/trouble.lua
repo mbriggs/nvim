@@ -5,7 +5,7 @@ return {
         require("trouble").setup({})
     end,
     keys = {
-        { "<leader>cx", "<cmd>Trouble diagnostics toggle<cr>",              desc = "Diagnostics (Trouble)" },
-        { "<leader>cX", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", desc = "Buffer Diagnostics (Trouble)" },
+        { "<leader>qq", "<cmd>Trouble diagnostics toggle<cr>",              desc = "Diagnostics (Trouble)" },
+        { "<leader>qb", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", desc = "Buffer Diagnostics (Trouble)" },
     },
 }

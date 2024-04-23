@@ -18,6 +18,7 @@ return {
                 b = { name = "+buffer" },
                 p = { name = "+project" },
                 d = { name = "+debug" },
+                q = { name = "+diagnostics" },
                 c = { name = "+code" },
                 t = { name = "+test" },
                 f = { name = "+find" },
