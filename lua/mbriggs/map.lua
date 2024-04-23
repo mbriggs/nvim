@@ -8,7 +8,7 @@ map("n", "<leader>x", vim.cmd.Ex, { desc = "netrw" })
 map("n", "<leader>bk", "<cmd>bd!<cr>", { desc = "nuke buffer" })
 
 -- go to alternate file
-map("n", "<leader>bb", "<C-^>", { desc = "go to alternate file" })
+map("n", "<leader>-", "<C-^>", { desc = "go to alternate file" })
 
 -- make file executable
 map("n", "<leader>bx", "<cmd>!chmod +x %<CR>", { silent = true, desc = "make file executable" })
@@ -62,7 +62,6 @@ map("n", "Q", "@q", { desc = "replay macro" })
 -- qf nav, keep cursor in the middle of the screen, go off of option
 map("n", "<M-n>", "<cmd>cnext<CR>zz", { desc = "next quickfix" })
 map("n", "<M-p>", "<cmd>cprev<CR>zz", { desc = "previous quickfix" })
-map("n", "<M-q>", [[<cmd>lua require("toggle_qf")()<CR>]], { desc = "toggle quickfix" })
 
 -- substitute current word
 map("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "substitute current word" })
