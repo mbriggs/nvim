@@ -1,8 +1,6 @@
 vim.g.mapleader = " "
 local map = vim.keymap.set
 
--- netrw
-map("n", "<leader>x", vim.cmd.Ex, { desc = "netrw" })
 
 -- nuke buffer
 map("n", "<leader>bk", "<cmd>bd!<cr>", { desc = "nuke buffer" })

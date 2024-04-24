@@ -10,3 +10,5 @@ require("mbriggs.ft")
 -- load and configure third party plugins
 require("mbriggs.plugins")
 
+-- configure netrw
+require("mbriggs.netrw")
