@@ -3,7 +3,7 @@ return {
     dependencies = {
         "nvimdev/guard-collection",
     },
-
+    event = { "BufReadPost", "BufNewFile" },
     config = function()
         local ft = require("guard.filetype")
 

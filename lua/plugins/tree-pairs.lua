@@ -1,6 +1,6 @@
 return {
-    'yorickpeterse/nvim-tree-pairs',
-    name = 'tree-pairs',
-    config = true,
-    lazy = false
+	"yorickpeterse/nvim-tree-pairs",
+	name = "tree-pairs",
+	event = { "BufReadPost", "BufNewFile" },
+	config = true,
 }

@@ -1,5 +1,14 @@
 return {
-    { "tpope/vim-unimpaired" },
-    { "tpope/vim-repeat" },
-    { "tpope/vim-surround" },
+    {
+        "tpope/vim-unimpaired",
+        event = { "BufReadPost", "BufNewFile" },
+    },
+    {
+        "tpope/vim-repeat",
+        event = { "BufReadPost", "BufNewFile" },
+    },
+    {
+        "tpope/vim-surround",
+        event = { "BufReadPost", "BufNewFile" },
+    },
 }
