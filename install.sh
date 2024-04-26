@@ -3,6 +3,7 @@
 ln -sfv "$HOME/.config/nvim" "$(dirname "$0")"
 
 brew install luarocks
+brew install luajit
 brew install neovim
 brew install python3
 brew install tmux

@@ -1,6 +1,6 @@
 vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 local map = vim.keymap.set
-
 
 -- nuke buffer
 map("n", "<leader>bk", "<cmd>bd!<cr>", { desc = "nuke buffer" })
@@ -76,14 +76,14 @@ map("c", "%%", "<C-R>=expand('%:h').'/'<cr>", { desc = "put current dir into com
 
 --tmux
 map("n", "<c-w>h", function()
-    require("tmux").move_left()
+	require("tmux").move_left()
 end, { desc = "move left" })
 map("n", "<c-w>j", function()
-    require("tmux").move_bottom()
+	require("tmux").move_bottom()
 end, { desc = "move bottom" })
 map("n", "<c-w>k", function()
-    require("tmux").move_top()
+	require("tmux").move_top()
 end, { desc = "move top" })
 map("n", "<c-w>l", function()
-    require("tmux").move_right()
+	require("tmux").move_right()
 end, { desc = "move right" })
