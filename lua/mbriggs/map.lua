@@ -12,7 +12,7 @@ map("n", "<leader>-", "<C-^>", { desc = "go to alternate file" })
 map("n", "<leader>bx", "<cmd>!chmod +x %<CR>", { silent = true, desc = "make file executable" })
 
 -- make it super easy to quit
-map("n", "<leader><cr>", ":q<cr>", { desc = "quit" })
+map("n", "<leader><space>", ":q<cr>", { desc = "quit" })
 
 -- make it super easy to split
 map("n", "<leader>'", ":vsp<cr>", { desc = "vertical split" })
@@ -76,14 +76,14 @@ map("c", "%%", "<C-R>=expand('%:h').'/'<cr>", { desc = "put current dir into com
 
 --tmux
 map("n", "<c-w>h", function()
-	require("tmux").move_left()
+    require("tmux").move_left()
 end, { desc = "move left" })
 map("n", "<c-w>j", function()
-	require("tmux").move_bottom()
+    require("tmux").move_bottom()
 end, { desc = "move bottom" })
 map("n", "<c-w>k", function()
-	require("tmux").move_top()
+    require("tmux").move_top()
 end, { desc = "move top" })
 map("n", "<c-w>l", function()
-	require("tmux").move_right()
+    require("tmux").move_right()
 end, { desc = "move right" })
