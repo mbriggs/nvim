@@ -2,6 +2,9 @@
 
 ln -sfv "$HOME/.config/nvim" "$(dirname "$0")"
 
+brew install task
+brew install vit
+brew install tasksh
 brew install luarocks
 brew install luajit
 brew install neovim

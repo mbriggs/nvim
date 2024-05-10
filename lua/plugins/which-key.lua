@@ -22,6 +22,7 @@ return {
                 o = { name = "+neorg", j = { name = "+journal" } },
                 c = { name = "+code" },
                 t = { name = "+test" },
+                k = { name = "+task" },
                 f = { name = "+find" },
                 g = { name = "+git" },
             },
