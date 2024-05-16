@@ -20,6 +20,22 @@ end
 vim.api.nvim_create_user_command('Journal', open_journal, {})
 vim.api.nvim_set_keymap('n', '<leader>oj', '<cmd>Journal<CR>', { noremap = true, silent = true })
 
+local function insert_journal_header()
+  -- Get the current line content
+  local current_line = vim.api.nvim_get_current_line()
+
+  -- Define the formatted date string
+  local date_string = "* " .. os.date("%A - %d %b")
+
+  -- Insert the date string into the current line
+  vim.api.nvim_set_current_line(date_string)
+
+  -- Leave insert mode
+  vim.api.nvim_command("stopinsert")
+end
+
+
+
 return {
   "nvim-orgmode/orgmode",
   event = "VeryLazy",
@@ -37,6 +53,9 @@ return {
           silent = true,
           buffer = true,
         })
+
+        vim.keymap.set("n", "<leader>oiH", function() insert_journal_header() end,
+          { noremap = true, silent = true, desc = "Insert journal header" })
       end,
     })
   end,
