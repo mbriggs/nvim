@@ -20,10 +20,8 @@ end
 vim.api.nvim_create_user_command('Journal', open_journal, {})
 vim.api.nvim_set_keymap('n', '<leader>oj', '<cmd>Journal<CR>', { noremap = true, silent = true })
 
+-- insert day header
 local function insert_journal_header()
-  -- Get the current line content
-  local current_line = vim.api.nvim_get_current_line()
-
   -- Define the formatted date string
   local date_string = "* " .. os.date("%A - %d %b")
 
@@ -35,6 +33,31 @@ local function insert_journal_header()
 end
 
 
+local function insert_meeting_header()
+  local orgmode = require("orgmode")
+  local api = vim.api
+
+  -- Get the current line number
+  local current_line = api.nvim_win_get_cursor(0)[1]
+
+  api.nvim_set_current_line("🤝 ")
+
+  -- Add "topics" and "notes" lines
+  api.nvim_buf_set_lines(0, current_line, current_line, false, { "", "topics", "", "notes" })
+  orgmode.action("org_mappings.toggle_heading")
+
+  -- Turn "notes" into a heading
+  api.nvim_win_set_cursor(0, { current_line + 4, 0 })
+  orgmode.action("org_mappings.toggle_heading")
+
+  -- Turn "topics" into a heading
+  api.nvim_win_set_cursor(0, { current_line + 2, 0 })
+  orgmode.action("org_mappings.toggle_heading")
+
+  -- Go back to the first line and enter insert mode at the end of the line
+  api.nvim_win_set_cursor(0, { current_line, #api.nvim_get_current_line() })
+  vim.cmd('startinsert!')
+end
 
 return {
   "nvim-orgmode/orgmode",
@@ -56,6 +79,9 @@ return {
 
         vim.keymap.set("n", "<leader>oiH", function() insert_journal_header() end,
           { noremap = true, silent = true, desc = "Insert journal header" })
+
+        vim.keymap.set("n", "<leader>oim", function() insert_meeting_header() end,
+          { noremap = true, silent = true, desc = "Insert meeting header" })
       end,
     })
   end,
