@@ -5,8 +5,7 @@ local function open_journal()
 
   -- Format the date components
   local year = date.year
-  local month = string.format("%02d", date.month)
-  local month_name = os.date("%b", os.time { year = year, month = date.month, day = 1 })
+  local month_name = os.date("%b", os.time({ year = year, month = date.month, day = 1 }))
 
   -- Construct the file path
   local journal_dir = string.format("%s/notes/journal/%d", os.getenv("HOME"), year)
@@ -17,8 +16,8 @@ local function open_journal()
   vim.cmd("edit " .. journal_file)
 end
 
-vim.api.nvim_create_user_command('Journal', open_journal, {})
-vim.api.nvim_set_keymap('n', '<leader>oj', '<cmd>Journal<CR>', { noremap = true, silent = true })
+vim.api.nvim_create_user_command("Journal", open_journal, {})
+vim.api.nvim_set_keymap("n", "<leader>oj", "<cmd>Journal<CR>", { noremap = true, silent = true })
 
 -- insert day header
 local function insert_journal_header()
@@ -31,7 +30,6 @@ local function insert_journal_header()
   -- Leave insert mode
   vim.api.nvim_command("stopinsert")
 end
-
 
 local function insert_meeting_header()
   local orgmode = require("orgmode")
@@ -56,7 +54,7 @@ local function insert_meeting_header()
 
   -- Go back to the first line and enter insert mode at the end of the line
   api.nvim_win_set_cursor(0, { current_line, #api.nvim_get_current_line() })
-  vim.cmd('startinsert!')
+  vim.cmd("startinsert!")
 end
 
 return {
@@ -72,16 +70,18 @@ return {
     vim.api.nvim_create_autocmd("FileType", {
       pattern = "org",
       callback = function()
-        vim.keymap.set("i", "<f5>", '<cmd>lua require("orgmode").action("org_mappings.meta_return")<CR>', {
+        vim.keymap.set("i", "<s-cr>", '<cmd>lua require("orgmode").action("org_mappings.meta_return")<CR>', {
           silent = true,
           buffer = true,
         })
 
-        vim.keymap.set("n", "<leader>oiH", function() insert_journal_header() end,
-          { noremap = true, silent = true, desc = "Insert journal header" })
+        vim.keymap.set("n", "<leader>oiH", function()
+          insert_journal_header()
+        end, { noremap = true, silent = true, desc = "Insert journal header" })
 
-        vim.keymap.set("n", "<leader>oim", function() insert_meeting_header() end,
-          { noremap = true, silent = true, desc = "Insert meeting header" })
+        vim.keymap.set("n", "<leader>oim", function()
+          insert_meeting_header()
+        end, { noremap = true, silent = true, desc = "Insert meeting header" })
       end,
     })
   end,
