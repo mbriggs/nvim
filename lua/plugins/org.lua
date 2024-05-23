@@ -65,6 +65,11 @@ return {
     require("orgmode").setup({
       org_agenda_files = "~/notes/**/*",
       org_default_notes_file = "~/notes/refile.org",
+      mappings = {
+        org = {
+          org_toggle_heading = "<prefix>h",
+        },
+      },
     })
 
     vim.api.nvim_create_autocmd("FileType", {
