@@ -72,21 +72,30 @@ return {
       },
     })
 
+
     vim.api.nvim_create_autocmd("FileType", {
       pattern = "org",
       callback = function()
-        vim.keymap.set("i", "<s-cr>", '<cmd>lua require("orgmode").action("org_mappings.meta_return")<CR>', {
+        local desc = require("map").desc({
+          noremap = true,
           silent = true,
-          buffer = true,
+          buffer = true
         })
+
+        vim.keymap.set("i", "<s-cr>", '<cmd>lua require("orgmode").action("org_mappings.meta_return")<CR>',
+          desc("org meta return"))
+
+        vim.keymap.set("n", "<leader>=",
+          [[<cmd>Telescope orgmode search_headings<cr>]],
+          desc("Insert journal header"))
 
         vim.keymap.set("n", "<leader>oiH", function()
           insert_journal_header()
-        end, { noremap = true, silent = true, desc = "Insert journal header" })
+        end, desc("Insert journal header"))
 
         vim.keymap.set("n", "<leader>oim", function()
           insert_meeting_header()
-        end, { noremap = true, silent = true, desc = "Insert meeting header" })
+        end, desc("Insert meeting header"))
       end,
     })
   end,
