@@ -12,7 +12,7 @@
   "diffview.nvim": { "branch": "main", "commit": "1ec7b56b959dab18f7030f541c33ae60e18a6f88" },
   "fidget.nvim": { "branch": "main", "commit": "ef99df04a1c53a453602421bc0f756997edc8289" },
   "gitlinker.nvim": { "branch": "master", "commit": "cc59f732f3d043b626c8702cb725c82e54d35c25" },
-  "guard-collection": { "branch": "main", "commit": "d04b1da882a193f099ac5ac67c3b07c4b1520a72" },
+  "guard-collection": { "branch": "main", "commit": "dfc07dccb865263a22907f9e1783306a8c6f1fd1" },
   "guard.nvim": { "branch": "main", "commit": "0dca2a98e9aa67ca8ffdf6ca170fcbe050f53406" },
   "harpoon": { "branch": "harpoon2", "commit": "0378a6c428a0bed6a2781d459d7943843f374bce" },
   "lazy.nvim": { "branch": "main", "commit": "24fa2a97085ca8a7220b5b078916f81e316036fd" },

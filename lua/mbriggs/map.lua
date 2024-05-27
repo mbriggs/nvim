@@ -58,14 +58,11 @@ map("n", "<leader>Y", [["+Y]], { desc = "yank rest of line to system clipboard" 
 map("n", "Q", "@q", { desc = "replay macro" })
 
 -- qf nav, keep cursor in the middle of the screen, go off of option
-map("n", "<M-n>", "<cmd>cnext<CR>zz", { desc = "next quickfix" })
-map("n", "<M-p>", "<cmd>cprev<CR>zz", { desc = "previous quickfix" })
+map("n", "<C-S-n>", "<cmd>cnext<CR>zz", { desc = "next quickfix" })
+map("n", "<C-S-p>", "<cmd>cprev<CR>zz", { desc = "previous quickfix" })
 
 -- substitute current word
 map("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "substitute current word" })
-
--- save and clear highlights
-map("n", "<CR>", ":nohlsearch<CR>:w<CR>", { desc = "save and clear highlights" })
 
 -- H / L for start / end of line
 map({ "n", "v" }, "<s-h>", "^", { desc = "start of line" })
@@ -76,14 +73,14 @@ map("c", "%%", "<C-R>=expand('%:h').'/'<cr>", { desc = "put current dir into com
 
 --tmux
 map("n", "<c-w>h", function()
-    require("tmux").move_left()
+  require("tmux").move_left()
 end, { desc = "move left" })
 map("n", "<c-w>j", function()
-    require("tmux").move_bottom()
+  require("tmux").move_bottom()
 end, { desc = "move bottom" })
 map("n", "<c-w>k", function()
-    require("tmux").move_top()
+  require("tmux").move_top()
 end, { desc = "move top" })
 map("n", "<c-w>l", function()
-    require("tmux").move_right()
+  require("tmux").move_right()
 end, { desc = "move right" })
