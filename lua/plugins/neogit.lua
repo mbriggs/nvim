@@ -9,6 +9,10 @@ return {
 		kind = "auto",
 		console_timeout = 10000,
 		auto_show_console = false,
+		integrations = {
+			diffview = true,
+			telescope = true,
+		},
 	},
 	cmd = { "Neogit" },
 	keys = {
