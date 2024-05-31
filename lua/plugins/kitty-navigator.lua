@@ -2,8 +2,10 @@ return {
   "knubie/vim-kitty-navigator",
   event = "VeryLazy",
   build = "cp ./*.py ~/.config/kitty/",
-  config = function()
+  init = function()
     vim.g.kitty_navigator_no_mappings = 1
+  end,
+  config = function()
     local map = vim.keymap.set
 
     map("", "<D-h>", ":KittyNavigateLeft<cr>", { desc = "kitty navigate left" })
