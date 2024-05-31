@@ -1,6 +1,5 @@
 return {
 	"folke/trouble.nvim",
-	branch = "dev",
 	cmd = "Trouble",
 	config = true,
 	keys = {
