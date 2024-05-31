@@ -12,6 +12,9 @@ vim.g.netrw_localcopydircmd = "cp -r"
 vim.g.netrw_localmkdir = "mkdir -p"
 vim.g.netrw_localrmdir = "rm -r"
 
+-- split to the right instead of the left
+vim.g.netrw_altv = 1
+
 -- Highlight marked files in the same way search matches are
 vim.cmd("hi! link netrwMarkFile Search")
 
