@@ -17,7 +17,24 @@ local function open_journal()
 end
 
 vim.api.nvim_create_user_command("Journal", open_journal, {})
-vim.api.nvim_set_keymap("n", "<leader>oj", "<cmd>Journal<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>oj", "<cmd>Journal<CR>", { noremap = true, silent = true, desc = "Open journal" })
+
+local function run_jextr()
+  local cmd = "cd ~/jextr && go run ./init.go"
+  local result = vim.fn.systemlist(cmd)
+
+  if vim.v.shell_error == 0 then
+    print("generated views")
+  else
+    for _, line in ipairs(result) do
+      print(line)
+    end
+  end
+end
+
+vim.api.nvim_create_user_command("JournalExtract", run_jextr, {})
+vim.api.nvim_set_keymap("n", "<leader>o;", "<cmd>JournalExtract<CR>",
+  { noremap = true, silent = true, desc = "Extract journal" })
 
 -- insert day header
 local function insert_journal_header()
@@ -88,12 +105,7 @@ return {
           desc("org meta return")
         )
 
-        vim.keymap.set(
-          "n",
-          "<leader>=",
-          [[<cmd>Telescope orgmode search_headings<cr>]],
-          desc("Insert journal header")
-        )
+        vim.keymap.set("n", "<leader>=", [[<cmd>Telescope orgmode search_headings<cr>]], desc("Insert journal header"))
 
         vim.keymap.set("n", "<leader>oiH", function()
           insert_journal_header()
