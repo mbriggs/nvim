@@ -4,6 +4,9 @@ vim.g.netrw_banner = 0
 -- Show directories first (sorting)
 vim.g.netrw_sort_sequence = [[[\/]$,*]]
 
+-- start hidden
+vim.g.netrw_list_hide = [[^\..*]]
+
 -- Human-readable files sizes
 vim.g.netrw_sizestyle = "H"
 
@@ -18,4 +21,4 @@ vim.g.netrw_altv = 1
 -- Highlight marked files in the same way search matches are
 vim.cmd("hi! link netrwMarkFile Search")
 
-vim.keymap.set("n", "<leader>x", vim.cmd.Ex, { desc = "netrw" })
+vim.keymap.set("n", "-", vim.cmd.Ex, { desc = "netrw" })
