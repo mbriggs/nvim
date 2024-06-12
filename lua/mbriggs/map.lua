@@ -43,10 +43,6 @@ map("i", "<M-left>", "<C-left>", { desc = "previous word" })
 map("i", "<M-right>", "<C-right>", { desc = "next word" })
 map("i", "<M-backspace>", "<C-w>", { desc = "delete previous word" })
 
--- dabbrev style completion
-map("i", "<C-j>", "<C-x><C-n>", { desc = "next completion" })
-map("i", "<C-k>", "<C-x><C-p>", { desc = "previous completion" })
-
 -- without yanking
 map("x", "<leader>p", [["_dP]], { desc = "paste without yanking" })
 

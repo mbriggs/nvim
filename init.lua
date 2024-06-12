@@ -16,6 +16,9 @@ require("mbriggs.ft.mergemaps")
 -- set up qf maps
 require("mbriggs.ft.qf")
 
+-- set up completion / snippets
+require("mbriggs.completion")
+
 -- load and configure third party plugins
 require("mbriggs.plugins")
 
