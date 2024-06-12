@@ -1,5 +1,8 @@
 vim.api.nvim_create_augroup("userft", {})
 
+-- templ files for golang
+vim.filetype.add({ extension = { templ = "templ" } })
+
 -- edn is clojure
 vim.api.nvim_create_autocmd("BufRead", {
   desc = "set edn to clojure",
