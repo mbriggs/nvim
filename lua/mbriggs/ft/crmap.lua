@@ -1,6 +1,6 @@
 -- Define the lists of inappropriate buffer types and file types
 local inappropriate_buftypes = { "quickfix", "nofile", "terminal", "help" }
-local inappropriate_filetypes = { "qf", "help", "gitcommit", "netrw", "copilot-chat" }
+local inappropriate_filetypes = { "qf", "undotree", "help", "gitcommit", "netrw", "copilot-chat" }
 
 -- Function to check if the current buffer type or file type is inappropriate
 local function is_inappropriate_context()
