@@ -24,3 +24,6 @@ require("mbriggs.plugins")
 
 -- configure netrw
 require("mbriggs.netrw")
+
+-- statusline
+require("mbriggs.statusline")
