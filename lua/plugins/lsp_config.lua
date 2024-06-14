@@ -10,7 +10,16 @@ return {
 		"hrsh7th/cmp-cmdline",
 		"hrsh7th/nvim-cmp",
 		"j-hui/fidget.nvim",
-		"folke/neodev.nvim", -- configure lua LSP for neovim
+		{
+			"folke/lazydev.nvim",
+			ft = "lua",
+			opts = {
+				library = {
+					{ path = "luvit-meta/library", words = { "vim%.uv" } },
+				},
+			},
+		},
+		{ "Bilal2453/luvit-meta", lazy = true },
 	},
 	event = { "BufReadPost", "BufNewFile" },
 	cmd = { "LspInfo", "LspInstall", "LspUninstall" },
@@ -107,8 +116,7 @@ return {
 			}),
 			sources = cmp.config.sources({
 				{ name = "nvim_lsp" },
-			}, {
-				-- { name = "buffer" },
+				{ name = "lazydev", group_index = 0 },
 			}),
 		})
 
