@@ -5,12 +5,16 @@ return {
 		"nvim-lua/plenary.nvim",
 		"joaomsa/telescope-orgmode.nvim",
 		"natecraddock/telescope-zf-native.nvim",
+		"mbriggs/dir-telescope.nvim",
+		"nvim-telescope/telescope-live-grep-args.nvim",
 	},
 	cmd = { "Telescope" },
 	config = function()
 		local actions = require("telescope.actions")
+		local telescope = require("telescope")
+		local lga_actions = require("telescope-live-grep-args.actions")
 
-		require("telescope").setup({
+		telescope.setup({
 			defaults = {
 				mappings = {
 					i = {
@@ -32,11 +36,34 @@ return {
 						match_filename = false,
 					},
 				},
+
+				live_grep_args = {
+					auto_quoting = true, -- enable/disable auto-quoting
+					-- define mappings, e.g.
+					mappings = { -- extend mappings
+						i = {
+							["<C-k>"] = lga_actions.quote_prompt(),
+							["<C-i>"] = lga_actions.quote_prompt({ postfix = " --iglob " }),
+							-- freeze the current list and start a fuzzy search in the frozen list
+							["<C-space>"] = actions.to_fuzzy_refine,
+						},
+					},
+					-- ... also accepts theme settings, for example:
+					-- theme = "dropdown", -- use dropdown theme
+					-- theme = { }, -- use own theme spec
+					-- layout_config = { mirror=true }, -- mirror preview pane
+				},
 			},
 		})
 
-		require("telescope").load_extension("zf-native")
-		-- require("telescope").load_extension("orgmode")
+		telescope.load_extension("live_grep_args")
+
+		-- dir-telescope allows narrowing telescope to a specific directory
+		require("dir-telescope").setup()
+		telescope.load_extension("dir")
+
+		telescope.load_extension("zf-native")
+		-- telescope.load_extension("orgmode")
 
 		-- vim.keymap.set("n", "<leader>;", telescope.find_files, { desc = "Find files" })
 		-- vim.keymap.set("n", "<leader>ff", telescope.find_files, { desc = "Find files" })
@@ -57,6 +84,14 @@ return {
 	end,
 	keys = {
 		{
+			"<leader>f;",
+			":Telescope resume<CR>",
+			noremap = true,
+			silent = true,
+			desc = "Resume last telescope session",
+		},
+		-- find files
+		{
 			"<leader>;",
 			":Telescope find_files<CR>",
 			noremap = true,
@@ -71,26 +106,62 @@ return {
 			desc = "Find files",
 		},
 		{
+			"<leader>f<leader>f",
+			":Telescope dir find_files<CR>",
+			noremap = true,
+			silent = true,
+			desc = "Find files in subdir",
+		},
+
+		-- find current word
+		{
 			"<leader>fw",
-			":lua require('telescope.builtin').grep_string({ search = vim.fn.expand('<cword>') })<CR>",
+			":lua require('telescope-live-grep-args.shortcuts').grep_word_under_cursor()<CR>",
 			noremap = true,
 			silent = true,
 			desc = "Find current word in project",
 		},
 		{
 			"<leader>fW",
-			":lua require('telescope.builtin').grep_string({ search = vim.fn.expand('<cWORD>') })<CR>",
+			":lua require('telescope-live-grep-args.shortcuts').grep_word_under_cursor_current_buffer()<CR>",
 			noremap = true,
 			silent = true,
-			desc = "Find current WORD (looser definition) in project",
+			desc = "Find current word in the current buffer",
+		},
+
+		-- find visual selection
+		{
+			"<leader>fv",
+			":lua require('telescope-live-grep-args.shortcuts').grep_visual_selection()<CR>",
+			noremap = true,
+			silent = true,
+			desc = "Find visual selection in project",
 		},
 		{
+			"<leader>fV",
+			":lua require('telescope-live-grep-args.shortcuts').grep_visual_selection_current_buffer()<CR>",
+			noremap = true,
+			silent = true,
+			desc = "Find visual selection in the current buffer",
+		},
+
+		-- grep
+		{
 			"<leader>fg",
-			":lua require('telescope.builtin').grep_string({ search = vim.fn.input('Grep > ') })<CR>",
+			":lua require('telescope').extensions.live_grep_args.live_grep_args()<cr>",
 			noremap = true,
 			silent = true,
 			desc = "Grep",
 		},
+		{
+			"<leader>f<leader>g",
+			"<cmd>Telescope dir live_grep<CR>",
+			noremap = true,
+			silent = true,
+			desc = "Grep in subdir",
+		},
+
+		-- vim
 		{
 			"<leader>fh",
 			":Telescope help_tags<CR>",
@@ -98,13 +169,8 @@ return {
 			silent = true,
 			desc = "Find help tag",
 		},
-		{
-			"<leader>f;",
-			":Telescope resume<CR>",
-			noremap = true,
-			silent = true,
-			desc = "Resume last telescope session",
-		},
+
+		-- lsp
 		{
 			"<leader>=",
 			":Telescope lsp_document_symbols<CR>",
