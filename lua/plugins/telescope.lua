@@ -1,3 +1,37 @@
+local finders = require("telescope.finders")
+local pickers = require("telescope.pickers")
+local actions = require("telescope.actions")
+local action_state = require("telescope.actions.state")
+
+-- Function to open netrw in the selected directory
+local function open_netrw(prompt_bufnr)
+	local selected_entry = action_state.get_selected_entry()
+	local dir = selected_entry.value
+	actions.close(prompt_bufnr)
+	-- vim.cmd("Explore " .. dir)
+	require("neo-tree.command").execute({ position = "current", dir = vim.fn.getcwd() .. "/" .. dir })
+end
+
+-- Custom picker to list all directories in the project
+local search_directories = function(opts)
+	opts = opts or {}
+
+	local cmd = { "fd", "--type", "d", "--hidden", "--exclude", ".git" }
+
+	pickers
+		.new(opts, {
+			prompt_title = "Search Directories",
+			finder = finders.new_oneshot_job(cmd, opts),
+			sorter = require("telescope.config").values.generic_sorter(opts),
+			attach_mappings = function(_, map)
+				map("i", "<CR>", open_netrw)
+				map("n", "<CR>", open_netrw)
+				return true
+			end,
+		})
+		:find()
+end
+
 return {
 	"nvim-telescope/telescope.nvim",
 	branch = "0.1.x",
@@ -89,6 +123,17 @@ return {
 			noremap = true,
 			silent = true,
 			desc = "Resume last telescope session",
+		},
+
+		-- search directories
+		{
+			"<leader>fd",
+			function()
+				search_directories()
+			end,
+			noremap = true,
+			silent = true,
+			desc = "Search directories",
 		},
 		-- find files
 		{

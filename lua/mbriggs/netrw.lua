@@ -20,5 +20,3 @@ vim.g.netrw_altv = 1
 
 -- Highlight marked files in the same way search matches are
 vim.cmd("hi! link netrwMarkFile Search")
-
-vim.keymap.set("n", "-", vim.cmd.Ex, { desc = "netrw" })
