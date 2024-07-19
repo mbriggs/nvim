@@ -21,6 +21,7 @@ return {
           "rust",
           "jsdoc",
           "bash",
+          "sql",
           "ruby",
           "go",
           "gomod",
