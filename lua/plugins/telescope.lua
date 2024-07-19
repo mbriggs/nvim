@@ -41,6 +41,10 @@ return {
     "natecraddock/telescope-zf-native.nvim",
     "mbriggs/dir-telescope.nvim",
     "nvim-telescope/telescope-live-grep-args.nvim",
+    {
+      "nvim-telescope/telescope-fzf-native.nvim",
+      build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release",
+    },
   },
   cmd = { "Telescope" },
   config = function()
@@ -57,20 +61,6 @@ return {
         },
       },
       extensions = {
-        ["zf-native"] = {
-          file = {
-            enable = true,
-            highlight_results = true,
-            match_filename = true,
-          },
-
-          generic = {
-            enable = true,
-            highlight_results = true,
-            match_filename = false,
-          },
-        },
-
         live_grep_args = {
           auto_quoting = true, -- enable/disable auto-quoting
           -- define mappings, e.g.
@@ -90,13 +80,13 @@ return {
       },
     })
 
+    telescope.load_extension('fzf')
     telescope.load_extension("live_grep_args")
 
     -- dir-telescope allows narrowing telescope to a specific directory
     require("dir-telescope").setup()
     telescope.load_extension("dir")
 
-    telescope.load_extension("zf-native")
     -- telescope.load_extension("orgmode")
 
     -- vim.keymap.set("n", "<leader>;", telescope.find_files, { desc = "Find files" })
