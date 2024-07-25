@@ -8,4 +8,7 @@ return {
 	config = function()
 		require("tiny-code-action").setup()
 	end,
+	keys = {
+		{ "<leader>ca", "<cmd>lua require('tiny-code-action').code_action()<CR>", desc = "Code action" },
+	},
 }
