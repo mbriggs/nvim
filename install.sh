@@ -19,3 +19,4 @@ brew install pgcli
 brew install sox
 
 luarocks install --lua-version 5.1 tiktoken_core # for copilotchat
+go install github.com/a-h/templ/cmd/templ@latest
