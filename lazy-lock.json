@@ -1,5 +1,6 @@
 {
   "CopilotChat.nvim": { "branch": "canary", "commit": "bddda2aaf66d34bf6dbae8af26166187a4343cca" },
+  "aerial": { "branch": "master", "commit": "d5ba0e3cfede432cec7e6ab28724c4a554ea0f09" },
   "caps-word.nvim": { "branch": "main", "commit": "564548ef557e4f873b2e67f0ea91f25042cedfe8" },
   "catpuccin": { "branch": "main", "commit": "18bab5ec4c782cdf7d7525dbe89c60bfa02fc195" },
   "cmp-buffer": { "branch": "main", "commit": "3022dbc9166796b644a841a02de8dd1cc1d311fa" },
@@ -9,7 +10,6 @@
   "copilot.lua": { "branch": "master", "commit": "86537b286f18783f8b67bccd78a4ef4345679625" },
   "dir-telescope.nvim": { "branch": "main", "commit": "43a61d281817cb56c221eb43451e32fbc8e2480f" },
   "fidget.nvim": { "branch": "main", "commit": "d855eed8a06531a7e8fd0684889b2943f373c469" },
-  "gentags": { "branch": "main", "commit": "e0ade1274fe8a94e993e7142dc19b5ddcc9ca38b" },
   "gitblame": { "branch": "master", "commit": "50543e3993f4b996eea01ff5ccc8fe2a354c5388" },
   "gitlinker.nvim": { "branch": "master", "commit": "cc59f732f3d043b626c8702cb725c82e54d35c25" },
   "goplements.nvim": { "branch": "main", "commit": "a3291c4db092d5bc95ec0e6e2bcfc14587d06dfc" },

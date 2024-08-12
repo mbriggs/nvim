@@ -53,6 +53,15 @@ return {
 			"nvim-telescope/telescope-fzf-native.nvim",
 			build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release",
 		},
+		{
+			"stevearc/aerial.nvim",
+			name = "aerial",
+			dependencies = {
+				"nvim-treesitter/nvim-treesitter",
+				"nvim-tree/nvim-web-devicons",
+			},
+			config = true,
+		},
 	},
 	cmd = { "Telescope" },
 	config = function()
@@ -90,6 +99,7 @@ return {
 
 		telescope.load_extension("fzf")
 		telescope.load_extension("live_grep_args")
+		telescope.load_extension("aerial")
 
 		-- dir-telescope allows narrowing telescope to a specific directory
 		require("dir-telescope").setup()
@@ -215,13 +225,21 @@ return {
 			desc = "Find help tag",
 		},
 
-		-- lsp
+		-- symbol jump
 		{
 			"<leader>=",
-			":Telescope lsp_document_symbols<CR>",
+			":Telescope aerial<CR>",
 			noremap = true,
 			silent = true,
 			desc = "Document symbols",
 		},
+		-- -- lsp
+		-- {
+		-- 	"<leader>=",
+		-- 	":Telescope lsp_document_symbols<CR>",
+		-- 	noremap = true,
+		-- 	silent = true,
+		-- 	desc = "Document symbols",
+		-- },
 	},
 }
