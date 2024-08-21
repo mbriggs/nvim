@@ -46,7 +46,6 @@ return {
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		"joaomsa/telescope-orgmode.nvim",
-		"natecraddock/telescope-zf-native.nvim",
 		"mbriggs/dir-telescope.nvim",
 		"nvim-telescope/telescope-live-grep-args.nvim",
 		{
@@ -65,12 +64,12 @@ return {
 	},
 	cmd = { "Telescope" },
 	config = function()
-		local actions = require("telescope.actions")
 		local telescope = require("telescope")
 		local lga_actions = require("telescope-live-grep-args.actions")
 
 		telescope.setup({
 			defaults = {
+				preview = false,
 				mappings = {
 					i = {
 						["<esc>"] = actions.close,
